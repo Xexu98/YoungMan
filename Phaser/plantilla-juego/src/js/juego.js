@@ -3,7 +3,7 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 function preload() {
     game.load.image('sky', 'assets/sky.png');
     game.load.image('ground', 'assets/platform.png');
-    game.load.image('bullet', 'assets/bala.png');
+    game.load.image('bullet', 'assets/bullet.png');
     game.load.image('enemy1','assets/enemy.png');
     game.load.image('enemy2','assets/enemy1.png');
     game.load.image('enemy3','assets/enemy2.png');
@@ -105,6 +105,7 @@ function create() {
          enemy3.body.gravity.y=900;
 
          enemy4 = game.add.sprite(100,100,'enemy4');
+         enemy4.anchor.setTo(0.5,0.5);
          enemy4.enableBody=true;
          game.physics.arcade.enable(enemy4);
          enemy4.body.gravity.y=900;
@@ -115,8 +116,11 @@ function create() {
          torretas=game.add.sprite(385,400,'torreta');
          torretas.enableBody=true;
          game.physics.arcade.enable(torretas);
+
+         
          // The player and its settings
          player = game.add.sprite(32, game.world.height - 150, 'dude');
+         player.anchor.setTo(0.5,0.1);
          //  We need to enable physics on the player
          game.physics.arcade.enable(player);
          //  Player physics properties. Give the little guy a slight bounce.
@@ -272,6 +276,9 @@ function render ()
   /* game.debug.text(detectionpointX,100,350);
    game.debug.text(posicion,100,400);*/
 }
+
+//LOGICA ENEMIGOS
+
 function logicaenemigovolador()
 {
     if((enemy.body.x-player.body.x <= 75 && enemy.body.x-player.body.x >= -75 ) && (player.body.y-enemy.body.y <= 100 && player.body.y-enemy.body.y >=0) && !detectado)
@@ -375,6 +382,9 @@ function logicaocto()
     game.physics.arcade.moveToXY(enemy2,octox,octoy,175);
     pruebay=-pruebay;
 }
+
+//COLISIONES Y DISPAROS
+
 function fire () {
     if (game.time.now > tiempodis)
     {
@@ -431,7 +441,8 @@ function enemyfire(velx,vely,enemigo3)
         enemybullet.body.velocity.y=vely;
         dispaenem=game.time.now+200;
    // }
-}function logicatorretas()
+}
+function logicatorretas()
 {
     if(torretaalive){
     enemyfire(-200,-200,torretas);

@@ -1,7 +1,8 @@
 'use strict';
 
 var PlayScene = require('./play_scene.js');
-PlayScene=require('./juego.js');
+PlayScene=require('./FinalBoss.js');
+//PlayScene=require('./juego.js');
 
 var BootScene = {
   preload: function () {
@@ -47,10 +48,10 @@ var PreloaderScene = {
 window.onload = function () {
 /*  var game = new Phaser.Game(600, 600, Phaser.AUTO, 'game');*/
 
-  game.state.add('boot', BootScene);
-  game.state.add('preloader', PreloaderScene);
-  game.state.add('play', PlayScene);
+ // game.state.add('boot', BootScene);
+ // game.state.add('preloader', PreloaderScene);
+ // game.state.add('play', PlayScene);
 
 
-  game.state.start('boot');
+  //game.state.start('boot');
 };
